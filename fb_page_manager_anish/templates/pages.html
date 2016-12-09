@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block page_content %}
+    <h1>Pages I Own</h1>
+    <table class="table table-hover">
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+        </tr>
+        {% for id,info in pages.items() %}
+        <tr>
+            <td><a href={{ url_for('get_page_info',pageid = id , token=info.token , page_name=info.name)}}>{{ info.name }}</a> </td>
+            <td>{{info.category}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endblock %}

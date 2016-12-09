@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+
+
+
+
+{% block page_content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"><img src="{{ post_details['pic']}}" /></div>
+        <div class="col-md-8">
+            <table id="user" class="table table-bordered table-striped" style="clear: both">
+                    <tbody>
+                        <tr> <td>
+                                <h4>{{ post_details['description']}}
+                                </h4>
+                        </td></tr>
+                    </tbody>
+                </table>
+    </div>
+    <div class="row">
+        <div class="col-md-11">
+            <table id="user" class="table table-bordered table-striped" style="clear: both">
+                    <tbody>
+                        {% for from,message in post_details['comments'].items()  %}
+                        <tr>
+                            <td> {{from}} </td>
+                            <td> {{message}} </td>
+                            <td> <img height="10" width="10" src="http://www.freeiconspng.com/uploads/like-button-png-2.png"> </td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-11"></div>
+    </div>
+</div>
+
+
+{% endblock %}
