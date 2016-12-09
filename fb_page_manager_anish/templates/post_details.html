@@ -9,31 +9,36 @@
 {% block page_content %}
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-3"><img src="{{ post_details['pic']}}" /></div>
+
+    <div class="row" style="align:centre;">
+        <div class="col-md-3" style="align:centre;"><img height="150" width="150" src="{{ post_details['pic']}}" />
+            </div>
         <div class="col-md-8">
-            <table id="user" class="table table-bordered table-striped" style="clear: both">
-                    <tbody>
-                        <tr> <td>
-                                <h4>{{ post_details['description']}}
-                                </h4>
-                        </td></tr>
-                    </tbody>
-                </table>
+            <h3 class="display-4">Description </h3>
+            <p class="lead">{{post_details['description']}}</p>
+        </div>
     </div>
+
+
     <div class="row">
+
         <div class="col-md-11">
-            <table id="user" class="table table-bordered table-striped" style="clear: both">
-                    <tbody>
-                        {% for from,message in post_details['comments'].items()  %}
-                        <tr>
-                            <td> {{from}} </td>
-                            <td> {{message}} </td>
-                            <td> <img height="10" width="10" src="http://www.freeiconspng.com/uploads/like-button-png-2.png"> </td>
-                        </tr>
-                        {%endfor%}
-                    </tbody>
-            </table>
+            <h3 class="display-4">Comments </h3>
+
+            <table class="table table-hover">
+                <tr>
+                    <th>From</th>
+                    <th>Comment</th>
+                    <th>Like</th>
+                </tr>
+                {% for from,message in post_details['comments'].items()  %}
+                <tr>
+                    <td> <p class="lead">{{from}} </td>
+                    <td> <p class="lead">{{message}} </td>
+                    <td> <p class="lead"><img height="20" width="20" src="http://www.freeiconspng.com/uploads/like-button-png-2.png"> </td>
+                </tr>
+                {%endfor%}
+
         </div>
     </div>
     <div class="row">

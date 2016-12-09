@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block page_content %}
 
-<h1 class="display-3">{{page_name}}</h1>
+<h1 class="lead" >Page: {{page_name}}</h1>
 
 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">
     Create a Post !</button>
@@ -52,31 +52,31 @@
 
 
     {% if pubposts %}
-        <h1 class="display-4">Published Posts</h1>
+        <h1 class="lead">Published Posts</h1>
         <table class="table table-hover" style="table-layout:fixed;border-bottom: 1px solid #ccc;">
             <tr>
-                <th class="col-sm-1" >Icon</th>
-                <th class="col-sm-28" >Title</th>
-                <th class="col-sm-1" >Likes</td>
-                <th class="col-sm-1" >Comments</td>
+                <th class="col-sm-1 lead" >Icon</th>
+                <th  class="col-sm-28 lead" >Title</th>
+                <th  class="col-sm-1 lead" >Likes</td>
+                <th  class="col-sm-1 lead" >Comments</td>
             </tr>
             {% for id,info in pubposts.items()%}
             <tr>
-                <td class="col-sm-1" ><img height="30" width="30" src={{ info['picture']}}></img></td>
-                <td class="col-sm-28"style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
+                <td class="col-sm-1 lead" style=" font-size:12pt;"><img height="30" width="30" src={{ info['picture']}}></img></td>
+                <td class="col-sm-28 lead" style=" font-size:12pt; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
                     <a href={{ url_for('get_post_info', postid = id ,token=token ) }}> {{ info['name'] }} </a>
                 </td>
-                <td class="col-sm-1">{{info['likes']}}</td>
-                <td class="col-sm-1">{{info['comments']}}</td>
+                <td class="col-sm-1 lead" style=" font-size:12pt;">{{info['likes']}}</td>
+                <td class="col-sm-1 lead" style=" font-size:12pt;">{{info['comments']}}</td>
             </tr>
             {% endfor %}
         </table>
         {% else%}
-        <h1 class="display-4">No Unpublished Posts</h1>
+        <h1 class="lead">No Unpublished Posts</h1>
     {% endif %}
 
     {% if unpubposts %}
-        <h1 class="display-4">Unpublished Posts</h1>
+        <h1 class="lead">Unpublished Posts</h1>
         <table class="table table-hover" style="table-layout:fixed;">
             <tr>
                 <th class="col-sm-1" >Icon</th>
@@ -96,7 +96,7 @@
             {% endfor %}
         </table>
         {% else%}
-        <h1 class="display-4">No Unpublished Posts</h1>
+        <h1 class="lead">No Unpublished Posts</h1>
     {% endif %}
 
 

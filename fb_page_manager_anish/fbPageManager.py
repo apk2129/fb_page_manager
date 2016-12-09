@@ -58,14 +58,22 @@ class FacebookPageManager:
             elif 'story' in post:name = post['story']
 
             # get picture , likes , comments
-            endpoint = 'https://graph.facebook.com/v2.5/'+postid+ '?fields=reactions,picture,comments,is_published&access_token='+token
+            endpoint = 'https://graph.facebook.com/v2.5/'+postid+ '?fields=likes,picture,comments,is_published&access_token='+token
             response = requests.get(endpoint)
             fb_data = response.json()
 
             pic          = fb_data.get('picture','http://www.freeiconspng.com/uploads/no-image-icon-13.png')
-            likes        = 32
-            comments     = 22
-            # is_published = fb_data.get('is_published',True)
+
+            likes = 0
+            print("fb_data")
+            print(fb_data)
+            if fb_data.get('likes',None):
+                likes = len(fb_data.get('likes')['data'])
+
+            comments     = 0
+            if fb_data.get('comments',None):
+                comments = len(fb_data.get('comments')['data'])
+
 
             published_posts_cache[postid] = {
                 'name'    : name,
@@ -77,7 +85,6 @@ class FacebookPageManager:
         # get unpublished_posts
         endpoint_u = 'https://graph.facebook.com/v2.8/'+self.page_id+'/promotable_posts?fields=scheduled_publish_time,is_published&access_token='+token
 
-        print(endpoint_u)
         response_u = requests.get(endpoint_u)
         fb_data_u  = response.json()
 
